@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Collaborative team illustration">
+<defs>
+  <linearGradient id="teamg" x1="0" x2="1"><stop stop-color="#0b74d1"/><stop offset=".55" stop-color="#11a05b"/><stop offset="1" stop-color="#e4b400"/></linearGradient>
+</defs>
+<rect width="900" height="520" rx="34" fill="#f6f9fc"/>
+<circle cx="276" cy="215" r="86" fill="#ffffff" stroke="#dbeafe" stroke-width="8"/>
+<circle cx="624" cy="215" r="86" fill="#ffffff" stroke="#dcfce7" stroke-width="8"/>
+<circle cx="276" cy="183" r="33" fill="#0b2a5b"/>
+<circle cx="624" cy="183" r="33" fill="#0b2a5b"/>
+<path d="M214 278c21-43 103-43 124 0" fill="none" stroke="#0b74d1" stroke-width="18" stroke-linecap="round"/>
+<path d="M562 278c21-43 103-43 124 0" fill="none" stroke="#11a05b" stroke-width="18" stroke-linecap="round"/>
+<path d="M365 222h170" stroke="url(#teamg)" stroke-width="16" stroke-linecap="round"/>
+<circle cx="365" cy="222" r="20" fill="#0b74d1"/>
+<circle cx="535" cy="222" r="20" fill="#11a05b"/>
+<rect x="226" y="354" width="448" height="58" rx="29" fill="white" stroke="#e2e8f0"/>
+<text x="450" y="392" text-anchor="middle" fill="#0b2a5b" font-family="Inter, Arial" font-size="24" font-weight="800">Cloud • Automation • DevOps</text>
+</svg>

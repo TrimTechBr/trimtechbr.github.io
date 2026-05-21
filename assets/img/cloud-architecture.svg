@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Cloud architecture illustration">
+<defs>
+  <linearGradient id="g1" x1="0" x2="1"><stop offset="0%" stop-color="#0b74d1"/><stop offset="55%" stop-color="#11a05b"/><stop offset="100%" stop-color="#e4b400"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#08224d" flood-opacity=".18"/></filter>
+</defs>
+<rect width="900" height="520" rx="34" fill="#f7fbff"/>
+<path d="M272 343h358c70 0 127-57 127-127s-57-127-127-127c-14 0-28 2-40 7C558 37 496 0 427 0C335 0 260 67 246 156c-9-2-18-3-28-3c-70 0-127 57-127 127s57 127 181 63z" transform="translate(15 74)" fill="white" filter="url(#shadow)"/>
+<path d="M248 327c-74 0-134-60-134-134S174 59 248 59c15 0 29 2 43 7C316 26 360 0 410 0c73 0 134 50 151 118c18-6 37-8 57-5c72 10 122 77 112 149c-9 66-66 115-133 115H478" transform="translate(70 55)" fill="none" stroke="url(#g1)" stroke-width="28" stroke-linecap="round"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="13">
+  <path d="M266 252h165" stroke="#0b74d1"/>
+  <path d="M431 252h176" stroke="#11a05b"/>
+  <path d="M348 315h83v-63" stroke="#0c7ab7"/>
+  <path d="M431 315h104v-63" stroke="#119b68"/>
+  <path d="M535 252h108" stroke="#0fa55c"/>
+  <path d="M348 381v58" stroke="#0b74d1"/>
+  <path d="M431 381v58" stroke="#11a05b"/>
+  <path d="M514 381v58" stroke="#e4b400"/>
+</g>
+<g>
+  <circle cx="266" cy="252" r="21" fill="#0b74d1"/>
+  <circle cx="607" cy="252" r="21" fill="#11a05b"/>
+  <circle cx="431" cy="252" r="21" fill="#0e8c91"/>
+  <circle cx="643" cy="252" r="21" fill="#11a05b"/>
+  <circle cx="348" cy="439" r="20" fill="#0b74d1"/>
+  <circle cx="431" cy="439" r="20" fill="#11a05b"/>
+  <circle cx="514" cy="439" r="20" fill="#e4b400"/>
+</g>
+</svg>

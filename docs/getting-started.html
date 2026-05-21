@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Getting started | TrimTechBR</title>
+  <meta name="description" content="How to publish and maintain the TrimTechBR GitHub Pages website.">
+  <meta property="og:title" content="Getting started | TrimTechBR">
+  <meta property="og:description" content="How to publish and maintain the TrimTechBR GitHub Pages website.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/img/trimtech-header.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../index.html" aria-label="TrimTechBR home">
+      <img src="../assets/img/trimtech-logo.png" alt="TrimTechBR logo">
+      <strong><span>TrimTech</span><span>B</span><span>R</span></strong>
+    </a>
+
+    <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu">
+      <li><a class="nav-link" href="../index.html">Home</a></li>
+      <li><a class="nav-link" href="../about.html">Who we are</a></li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Solutions <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="../solutions/azure-observability-report.html">
+              <span class="dropdown-kicker">Active project</span>
+              <span class="dropdown-title">Azure Observability Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="../solutions/index.html">
+              <span class="dropdown-kicker">Portfolio</span>
+              <span class="dropdown-title">All solutions</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Documentation <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="../docs/getting-started.html">
+              <span class="dropdown-kicker">Start here</span>
+              <span class="dropdown-title">Getting started</span>
+            </a>
+          </li>
+          <li>
+            <a href="../docs/contribution-guide.html">
+              <span class="dropdown-kicker">Open source</span>
+              <span class="dropdown-title">Contribution guide</span>
+            </a>
+          </li>
+          <li>
+            <a href="../docs/roadmap.html">
+              <span class="dropdown-kicker">Planning</span>
+              <span class="dropdown-title">Roadmap</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li><a class="nav-link" href="../contact.html">Contact</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumbs"><a href="../index.html">Home</a> / Documentation / Getting started</p>
+    <span class="eyebrow">Documentation</span>
+    <h1>Getting started</h1>
+    <p class="lead">
+      This guide explains how to publish the TrimTechBR website using GitHub Pages.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">Docs</p>
+      <a href="#repository">Repository</a>
+      <a href="#publish">Publish</a>
+      <a href="#structure">Structure</a>
+      <a href="#customize">Customize</a>
+    </aside>
+
+    <article class="doc-content">
+      <h2 id="repository">1. Create the repository</h2>
+      <p>
+        Create a public GitHub repository named <code>trimtechbr.github.io</code> under the TrimTechBR organization.
+        For an organization site, this repository name becomes the default GitHub Pages website address.
+      </p>
+
+      <h2 id="publish">2. Publish the files</h2>
+      <p>Copy all files from this website package to the repository root and push them to the main branch.</p>
+      <pre><code>git clone https://github.com/TrimTechBR/trimtechbr.github.io.git
+cd trimtechbr.github.io
+# copy website files here
+git add .
+git commit -m "Create TrimTechBR GitHub Pages website"
+git push origin main</code></pre>
+
+      <h2 id="structure">3. Website structure</h2>
+      <pre><code>/
+├── index.html
+├── about.html
+├── contact.html
+├── solutions/
+│   ├── index.html
+│   └── azure-observability-report.html
+├── docs/
+│   ├── getting-started.html
+│   ├── contribution-guide.html
+│   └── roadmap.html
+└── assets/
+    ├── css/style.css
+    ├── js/main.js
+    └── img/</code></pre>
+
+      <h2 id="customize">4. Customize</h2>
+      <ul>
+        <li>Update solution pages as projects evolve.</li>
+        <li>Replace placeholder repository links with final TrimTechBR repository URLs.</li>
+        <li>Add screenshots under <code>assets/img</code>.</li>
+        <li>Create new pages under <code>solutions/</code> for future projects.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <p>© <span data-current-year></span> TrimTechBR. Built for cloud, automation and open-source collaboration.</p>
+    <div class="footer-links">
+      <a href="../solutions/index.html">Solutions</a>
+      <a href="../docs/getting-started.html">Docs</a>
+      <a href="https://github.com/TrimTechBR" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>
