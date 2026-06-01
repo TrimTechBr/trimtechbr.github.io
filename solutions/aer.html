@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AER — Azure Estate Report | TrimTechBR</title>
+  <meta name="description" content="AER — Azure Estate Report: read-only, fully-offline HTML dashboards for your Azure estate, generated from a single PowerShell command.">
+  <meta property="og:title" content="AER — Azure Estate Report | TrimTechBR">
+  <meta property="og:description" content="AER — Azure Estate Report: read-only, fully-offline HTML dashboards for your Azure estate, generated from a single PowerShell command.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/img/trimtech-header.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../index.html" aria-label="TrimTechBR home">
+      <img src="../assets/img/trimtech-logo.png" alt="TrimTechBR logo">
+      <strong><span>TrimTech</span><span>B</span><span>R</span></strong>
+    </a>
+
+    <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu">
+      <li><a class="nav-link" href="../index.html">Home</a></li>
+      <li><a class="nav-link" href="../about.html">Who we are</a></li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Solutions <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="../solutions/aer.html">
+              <span class="dropdown-kicker">Active project</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="../solutions/index.html">
+              <span class="dropdown-kicker">Portfolio</span>
+              <span class="dropdown-title">All solutions</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Documentation <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li><a href="../docs/getting-started.html"><span class="dropdown-kicker">Start here</span><span class="dropdown-title">Getting started</span></a></li>
+          <li><a href="../docs/usage.html"><span class="dropdown-kicker">Reference</span><span class="dropdown-title">Usage &amp; parameters</span></a></li>
+          <li><a href="../docs/report-reference.html"><span class="dropdown-kicker">The report</span><span class="dropdown-title">Report reference</span></a></li>
+          <li><a href="../docs/architecture.html"><span class="dropdown-kicker">Internals</span><span class="dropdown-title">Architecture &amp; security</span></a></li>
+          <li><a href="../docs/contribution-guide.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Contribution guide</span></a></li>
+        </ul>
+      </li>
+
+      <li><a class="nav-link" href="../contact.html">Contact</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link is-active" href="aer.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link" href="aer.pt-br.html">PT</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumbs"><a href="../index.html">Home</a> / <a href="index.html">Solutions</a> / AER — Azure Estate Report</p>
+    <span class="eyebrow">Active solution</span>
+    <h1>AER — Azure Estate Report</h1>
+    <p class="lead">
+      Read-only, fully-offline HTML dashboards for your Azure estate — generated from a single PowerShell command.
+      AER connects to Azure with your existing credentials, collects a read-only inventory through Azure Resource
+      Graph and ARM REST APIs, and renders a rich, multi-page, self-contained HTML report you can open straight
+      from disk. No web server, no database, no internet connection required to view it.
+    </p>
+    <div class="badge-row" style="margin-top:1.4rem;">
+      <span class="badge-license badge-oss">Open Source · MIT</span>
+      <span class="badge">Azure</span>
+      <span class="badge">PowerShell 7</span>
+      <span class="badge">Offline</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="../docs/getting-started.html">Get started</a>
+      <a class="btn btn-secondary" href="../docs/report-reference.html">See the full report reference</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">On this page</p>
+      <a href="#overview">Overview</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#report">What's in the report</a>
+      <a href="#exports">XLSX &amp; PDF exports</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#quickstart">Quick start</a>
+      <a href="#docs">Documentation</a>
+      <a href="#repository">Repository</a>
+    </aside>
+
+    <article class="doc-content">
+      <h2 id="overview">Overview</h2>
+      <p>
+        <strong>AER</strong> (Azure Estate Report) is a PowerShell 7 module that produces a complete, structured
+        picture of an Azure tenant. With a single command it discovers every subscription you can access, collects
+        inventory and configuration data, and renders a navigable HTML dashboard plus Excel and PDF exports —
+        all generated locally and viewable offline.
+      </p>
+      <p>
+        It is designed for cloud, platform, governance, security, FinOps and operations teams that need to document
+        and review Azure environments for architecture reviews, environment assessments and cloud management reporting.
+      </p>
+
+      <figure class="shot" style="margin:1.4rem 0;">
+        <img src="../assets/img/aer/assessment-overview.png" alt="AER assessment overview page">
+        <figcaption>Assessment overview — the report's landing page with estate-wide KPIs.</figcaption>
+      </figure>
+
+      <h2 id="highlights">Highlights</h2>
+      <div class="feature-grid">
+        <article class="card">
+          <h3>One command, full estate</h3>
+          <p><code>Invoke-AerReport</code> discovers every subscription you can access and produces a complete report.</p>
+        </article>
+        <article class="card">
+          <h3>100% read-only</h3>
+          <p>AER never creates, changes or deletes anything in Azure. Safe to run in production.</p>
+        </article>
+        <article class="card">
+          <h3>Fully offline output</h3>
+          <p>Plain HTML/CSS/JS with the data embedded — share the folder, open it on an air-gapped machine, attach it to a ticket.</p>
+        </article>
+        <article class="card">
+          <h3>Excel &amp; PDF exports</h3>
+          <p>The home page links a rich Excel workbook and a share-ready PDF report generated alongside the HTML.</p>
+        </article>
+        <article class="card">
+          <h3>Fast, parallel collection</h3>
+          <p>Collectors run in parallel across the tenant, with configurable concurrency.</p>
+        </article>
+        <article class="card">
+          <h3>Modern, navigable UI</h3>
+          <p>Sidebar navigation, searchable/filterable/resizable tables, charts and interactive diagrams with zoom, pan and PNG export.</p>
+        </article>
+      </div>
+
+      <h2 id="report">What's in the report</h2>
+      <p>The report is organized into eight domains, each with one or more pages:</p>
+      <table>
+        <thead>
+          <tr><th>Area</th><th>Pages</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Assessment</strong></td><td>Overview · Resource Inventory · Cloud Structure (management groups &amp; subscriptions) · Azure Advisor</td></tr>
+          <tr><td><strong>Compute</strong></td><td>Virtual Machines · Virtual Machine Scale Sets</td></tr>
+          <tr><td><strong>Databases</strong></td><td>Overview · Relational (incl. SQL-on-VM) · NoSQL · Cache · Analytics · Table Storage</td></tr>
+          <tr><td><strong>Applications</strong></td><td>Overview · Web / App Services · Functions &amp; Logic Apps · Containers · API &amp; Integration · AKS</td></tr>
+          <tr><td><strong>Network</strong></td><td>Overview (IP utilization, DNS, balancers) · Virtual Networks (subnets, UDRs, peering diagram) · Load Balancers</td></tr>
+          <tr><td><strong>Observability</strong></td><td>Coverage Overview · Diagnostic Settings · AMA &amp; Data Collection (VM→DCR→destination diagram) · Inventory (Log Analytics / App Insights)</td></tr>
+          <tr><td><strong>Policy</strong></td><td>Overview (compliance, assignments by effect) · Exemptions · Remediation</td></tr>
+          <tr><td><strong>Security</strong></td><td>Defender for Cloud Overview (plan coverage) · Recommendations</td></tr>
+          <tr><td><strong>Findings</strong></td><td>Cost optimization · Observability recommendations · General (security/config gaps)</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Every data table supports global search, per-column multi-select filters, column show/hide (persisted),
+        column resize, pagination and an expandable detail accordion. For a screenshot-by-screenshot tour, see the
+        <a href="../docs/report-reference.html">Report reference</a>.
+      </p>
+
+      <div class="shot-grid">
+        <figure class="shot"><img src="../assets/img/aer/network-vnet.png" alt="Virtual networks page with peering diagram"><figcaption>Network — virtual networks &amp; peering diagram</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/aer/observability-ama-dcr.png" alt="AMA and data collection diagram"><figcaption>Observability — VM→DCR→destination diagram</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/aer/security-overview.png" alt="Defender for Cloud overview"><figcaption>Security — Defender for Cloud coverage</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/aer/findings-cost.png" alt="Cost optimization findings"><figcaption>Findings — cost optimization</figcaption></figure>
+      </div>
+
+      <h2 id="exports">XLSX &amp; PDF exports</h2>
+      <p>In addition to the offline HTML site, every run creates an <code>exports/</code> folder inside <code>-OutputPath</code>:</p>
+      <table>
+        <thead><tr><th>File</th><th>Contents</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>exports/aer-report.xlsx</code></td>
+            <td>Excel workbook with a first <strong>Dashboard</strong> sheet, executive KPIs, estate distribution, compute panels, operational signals, and executive/technical tabs for inventory, findings, Advisor, Defender, Policy, data services, applications and collection errors.</td>
+          </tr>
+          <tr>
+            <td><code>exports/aer-report.pdf</code></td>
+            <td>Landscape PDF report with an executive cover, key metrics and printable table pages for inventory, security/cost findings and Azure Advisor recommendations.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Files are generated locally alongside the report and do not depend on external services.</p>
+
+      <h2 id="requirements">Requirements</h2>
+      <ul>
+        <li><strong>PowerShell 7.0+</strong> (<code>pwsh</code>)</li>
+        <li><strong>Az modules</strong>: <code>Az.Accounts</code>, <code>Az.ResourceGraph</code></li>
+        <li>An <strong>authenticated Azure session</strong> (<code>Connect-AzAccount</code>)</li>
+        <li><strong>Azure RBAC</strong> on the target scope: <code>Reader</code> (minimum), <code>Monitoring Reader</code> (recommended for richer observability data)</li>
+      </ul>
+
+      <h2 id="quickstart">Quick start</h2>
+      <pre><code># 1) Sign in to Azure
+Connect-AzAccount
+
+# 2) Generate the report for every subscription you can access
+Invoke-AerReport -OpenReport</code></pre>
+      <p>
+        The report is written to <code>.\aer-report\index.html</code> (override with <code>-OutputPath</code>).
+        Exports are written beside it. To validate the layout without Azure access, use the built-in sample dataset:
+      </p>
+      <pre><code>Invoke-AerReport -SampleData -OutputPath .\aer-sample -OpenReport</code></pre>
+      <p>See the <a href="../docs/getting-started.html">Getting started</a> and <a href="../docs/usage.html">Usage &amp; parameters</a> pages for the complete walkthrough.</p>
+
+      <h2 id="docs">Documentation</h2>
+      <div class="feature-grid">
+        <article class="card"><h3>Getting started</h3><p>Requirements, installation and your first report.</p><a class="btn btn-secondary" href="../docs/getting-started.html">Open</a></article>
+        <article class="card"><h3>Usage &amp; parameters</h3><p>Every parameter and common invocation patterns.</p><a class="btn btn-secondary" href="../docs/usage.html">Open</a></article>
+        <article class="card"><h3>Report reference</h3><p>A guided tour of all eight domains with screenshots.</p><a class="btn btn-secondary" href="../docs/report-reference.html">Open</a></article>
+        <article class="card"><h3>Architecture &amp; security</h3><p>How collection, rendering and the read-only model work.</p><a class="btn btn-secondary" href="../docs/architecture.html">Open</a></article>
+      </div>
+
+      <h2 id="repository">Repository &amp; install</h2>
+      <p>
+        AER is open-source under the MIT license, developed in the open on GitHub and published to the
+        PowerShell Gallery — install it with <code>Install-Module AER</code>.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://www.powershellgallery.com/packages/Aer" target="_blank" rel="noopener">PowerShell Gallery</a>
+        <a class="btn btn-secondary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">Open the repository</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <p>© <span data-current-year></span> TrimTechBR. Open source projects for cloud, automation and DevOps.</p>
+    <div class="footer-links">
+      <a href="../solutions/index.html">Solutions</a>
+      <a href="../docs/getting-started.html">Docs</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usage &amp; parameters | AER docs | TrimTechBR</title>
+  <meta name="description" content="Every Invoke-AerReport parameter and common invocation patterns for AER — Azure Estate Report.">
+  <meta property="og:title" content="Usage &amp; parameters | AER docs | TrimTechBR">
+  <meta property="og:description" content="Every Invoke-AerReport parameter and common invocation patterns for AER — Azure Estate Report.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/img/trimtech-header.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../index.html" aria-label="TrimTechBR home">
+      <img src="../assets/img/trimtech-logo.png" alt="TrimTechBR logo">
+      <strong><span>TrimTech</span><span>B</span><span>R</span></strong>
+    </a>
+
+    <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu">
+      <li><a class="nav-link" href="../index.html">Home</a></li>
+      <li><a class="nav-link" href="../about.html">Who we are</a></li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Solutions <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="../solutions/aer.html">
+              <span class="dropdown-kicker">Active project</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="../solutions/index.html">
+              <span class="dropdown-kicker">Portfolio</span>
+              <span class="dropdown-title">All solutions</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Documentation <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li><a href="../docs/getting-started.html"><span class="dropdown-kicker">Start here</span><span class="dropdown-title">Getting started</span></a></li>
+          <li><a href="../docs/usage.html"><span class="dropdown-kicker">Reference</span><span class="dropdown-title">Usage &amp; parameters</span></a></li>
+          <li><a href="../docs/report-reference.html"><span class="dropdown-kicker">The report</span><span class="dropdown-title">Report reference</span></a></li>
+          <li><a href="../docs/architecture.html"><span class="dropdown-kicker">Internals</span><span class="dropdown-title">Architecture &amp; security</span></a></li>
+          <li><a href="../docs/contribution-guide.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Contribution guide</span></a></li>
+        </ul>
+      </li>
+
+      <li><a class="nav-link" href="../contact.html">Contact</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link is-active" href="usage.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link" href="usage.pt-br.html">PT</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumbs"><a href="../index.html">Home</a> / Documentation / Usage &amp; parameters</p>
+    <span class="eyebrow">Documentation</span>
+    <h1>Usage &amp; parameters</h1>
+    <p class="lead">
+      Everything <code>Invoke-AerReport</code> can do — the full parameter set and the most common invocation patterns.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">On this page</p>
+      <a href="#command">The command</a>
+      <a href="#parameters">Parameters</a>
+      <a href="#examples">Examples</a>
+      <a href="#automation">Automation &amp; -PassThru</a>
+      <a href="#help">Built-in help</a>
+    </aside>
+
+    <article class="doc-content">
+      <h2 id="command">The command</h2>
+      <p>
+        AER exposes a single entry point, <code>Invoke-AerReport</code>. With no parameters it reports on every
+        subscription in your current Azure context and writes the result to <code>.\aer-report</code>.
+      </p>
+      <pre><code>Invoke-AerReport</code></pre>
+
+      <h2 id="parameters">Parameters</h2>
+      <table>
+        <thead>
+          <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>-OutputPath</code></td><td>string</td><td><code>.\aer-report</code></td><td>Folder for the HTML report (created if missing). Entry point: <code>index.html</code>.</td></tr>
+          <tr><td><code>-SubscriptionId</code></td><td>string[]</td><td><em>(all)</em></td><td>One or more subscription IDs to include.</td></tr>
+          <tr><td><code>-ExcludeSubscriptionName</code></td><td>string[]</td><td><em>(none)</em></td><td>Subscription display names to exclude (exact, case-insensitive).</td></tr>
+          <tr><td><code>-MaxParallelCollectors</code></td><td>int (1–10)</td><td><code>4</code></td><td>Number of collectors to run concurrently.</td></tr>
+          <tr><td><code>-SampleData</code></td><td>switch</td><td>off</td><td>Generate a rich fake-data report without connecting to Azure. Useful for screenshots, demos and layout validation.</td></tr>
+          <tr><td><code>-OpenReport</code></td><td>switch</td><td>off</td><td>Open the report in the browser when finished.</td></tr>
+          <tr><td><code>-PassThru</code></td><td>switch</td><td>off</td><td>Return a summary object (paths, counts, duration).</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="examples">Examples</h2>
+      <pre><code># All subscriptions in the current context
+Invoke-AerReport
+
+# Custom output folder + open when done
+Invoke-AerReport -OutputPath C:\Reports\Contoso -OpenReport
+
+# Only specific subscriptions
+Invoke-AerReport -SubscriptionId '00000000-0000-0000-0000-000000000000','1111...'
+
+# Exclude subscriptions by name, with more parallelism
+Invoke-AerReport -ExcludeSubscriptionName 'Sandbox','Lab' -MaxParallelCollectors 8
+
+# Generate a layout/demo report with built-in sample data
+Invoke-AerReport -SampleData -OutputPath .\aer-sample -OpenReport</code></pre>
+
+      <h2 id="automation">Automation &amp; -PassThru</h2>
+      <p>Use <code>-PassThru</code> to capture a summary object you can use in scripts and pipelines:</p>
+      <pre><code>$r = Invoke-AerReport -PassThru
+$r.Resources       # resource count
+$r.IndexHtml       # path to index.html
+$r.ExcelWorkbook   # path to the XLSX export
+$r.PdfReport       # path to the PDF export</code></pre>
+      <div class="lead-note">
+        Because AER is read-only and fully offline in its output, it is safe to schedule on a runner or
+        automation host that has an authenticated Azure context with <code>Reader</code> access.
+      </div>
+
+      <h2 id="help">Built-in help</h2>
+      <p>Full help is available in the console:</p>
+      <pre><code>Get-Help Invoke-AerReport -Full
+Get-Help Invoke-AerReport -Examples</code></pre>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <p>© <span data-current-year></span> TrimTechBR. Open source projects for cloud, automation and DevOps.</p>
+    <div class="footer-links">
+      <a href="../solutions/index.html">Solutions</a>
+      <a href="../docs/getting-started.html">Docs</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Getting started | TrimTechBR</title>
-  <meta name="description" content="How to publish and maintain the TrimTechBR GitHub Pages website.">
-  <meta property="og:title" content="Getting started | TrimTechBR">
-  <meta property="og:description" content="How to publish and maintain the TrimTechBR GitHub Pages website.">
+  <title>Getting started | AER docs | TrimTechBR</title>
+  <meta name="description" content="Install AER — Azure Estate Report and generate your first read-only, offline Azure report.">
+  <meta property="og:title" content="Getting started | AER docs | TrimTechBR">
+  <meta property="og:description" content="Install AER — Azure Estate Report and generate your first read-only, offline Azure report.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="../assets/img/trimtech-header.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,9 +35,9 @@
         <button class="dropdown-trigger" aria-expanded="false">Solutions <span class="chevron">▾</span></button>
         <ul class="dropdown-menu">
           <li>
-            <a href="../solutions/azure-observability-report.html">
+            <a href="../solutions/aer.html">
               <span class="dropdown-kicker">Active project</span>
-              <span class="dropdown-title">Azure Observability Report</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
             </a>
           </li>
           <li>
@@ -52,29 +52,21 @@
       <li class="nav-item dropdown">
         <button class="dropdown-trigger" aria-expanded="false">Documentation <span class="chevron">▾</span></button>
         <ul class="dropdown-menu">
-          <li>
-            <a href="../docs/getting-started.html">
-              <span class="dropdown-kicker">Start here</span>
-              <span class="dropdown-title">Getting started</span>
-            </a>
-          </li>
-          <li>
-            <a href="../docs/contribution-guide.html">
-              <span class="dropdown-kicker">Open source</span>
-              <span class="dropdown-title">Contribution guide</span>
-            </a>
-          </li>
-          <li>
-            <a href="../docs/roadmap.html">
-              <span class="dropdown-kicker">Planning</span>
-              <span class="dropdown-title">Roadmap</span>
-            </a>
-          </li>
+          <li><a href="../docs/getting-started.html"><span class="dropdown-kicker">Start here</span><span class="dropdown-title">Getting started</span></a></li>
+          <li><a href="../docs/usage.html"><span class="dropdown-kicker">Reference</span><span class="dropdown-title">Usage &amp; parameters</span></a></li>
+          <li><a href="../docs/report-reference.html"><span class="dropdown-kicker">The report</span><span class="dropdown-title">Report reference</span></a></li>
+          <li><a href="../docs/architecture.html"><span class="dropdown-kicker">Internals</span><span class="dropdown-title">Architecture &amp; security</span></a></li>
+          <li><a href="../docs/contribution-guide.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Contribution guide</span></a></li>
         </ul>
       </li>
 
       <li><a class="nav-link" href="../contact.html">Contact</a></li>
-      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link is-active" href="getting-started.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link" href="getting-started.pt-br.html">PT</a>
+      </li>
     </ul>
   </div>
 </header>
@@ -85,9 +77,9 @@
   <div class="container">
     <p class="breadcrumbs"><a href="../index.html">Home</a> / Documentation / Getting started</p>
     <span class="eyebrow">Documentation</span>
-    <h1>Getting started</h1>
+    <h1>Getting started with AER</h1>
     <p class="lead">
-      This guide explains how to publish the TrimTechBR website using GitHub Pages.
+      Install AER — Azure Estate Report and generate your first read-only, fully-offline Azure report in a few minutes.
     </p>
   </div>
 </section>
@@ -95,52 +87,87 @@
 <section class="section">
   <div class="container content-layout">
     <aside class="sidebar">
-      <p class="sidebar-title">Docs</p>
-      <a href="#repository">Repository</a>
-      <a href="#publish">Publish</a>
-      <a href="#structure">Structure</a>
-      <a href="#customize">Customize</a>
+      <p class="sidebar-title">On this page</p>
+      <a href="#requirements">1. Requirements</a>
+      <a href="#install">2. Install</a>
+      <a href="#signin">3. Sign in to Azure</a>
+      <a href="#run">4. Generate the report</a>
+      <a href="#sample">5. Try it without Azure</a>
+      <a href="#output">6. Where the output goes</a>
+      <a href="#next">Next steps</a>
     </aside>
 
     <article class="doc-content">
-      <h2 id="repository">1. Create the repository</h2>
-      <p>
-        Create a public GitHub repository named <code>trimtechbr.github.io</code> under the TrimTechBR organization.
-        For an organization site, this repository name becomes the default GitHub Pages website address.
-      </p>
-
-      <h2 id="publish">2. Publish the files</h2>
-      <p>Copy all files from this website package to the repository root and push them to the main branch.</p>
-      <pre><code>git clone https://github.com/TrimTechBR/trimtechbr.github.io.git
-cd trimtechbr.github.io
-# copy website files here
-git add .
-git commit -m "Create TrimTechBR GitHub Pages website"
-git push origin main</code></pre>
-
-      <h2 id="structure">3. Website structure</h2>
-      <pre><code>/
-├── index.html
-├── about.html
-├── contact.html
-├── solutions/
-│   ├── index.html
-│   └── azure-observability-report.html
-├── docs/
-│   ├── getting-started.html
-│   ├── contribution-guide.html
-│   └── roadmap.html
-└── assets/
-    ├── css/style.css
-    ├── js/main.js
-    └── img/</code></pre>
-
-      <h2 id="customize">4. Customize</h2>
+      <h2 id="requirements">1. Requirements</h2>
       <ul>
-        <li>Update solution pages as projects evolve.</li>
-        <li>Replace placeholder repository links with final TrimTechBR repository URLs.</li>
-        <li>Add screenshots under <code>assets/img</code>.</li>
-        <li>Create new pages under <code>solutions/</code> for future projects.</li>
+        <li><strong>PowerShell 7.0+</strong> (<code>pwsh</code>) — Windows, macOS or Linux.</li>
+        <li><strong>Az PowerShell modules</strong>: <code>Az.Accounts</code> and <code>Az.ResourceGraph</code>.</li>
+        <li>An <strong>authenticated Azure session</strong> via <code>Connect-AzAccount</code>.</li>
+        <li><strong>Azure RBAC</strong> on the scope you want to report:
+          <ul>
+            <li><code>Reader</code> — minimum, for inventory and most pages.</li>
+            <li><code>Monitoring Reader</code> — recommended, for richer observability data.</li>
+            <li>To read App Service settings (App Insights coverage) the identity needs <code>Microsoft.Web/sites/config/list/Action</code> (e.g. <em>Website Contributor</em>); with plain <em>Reader</em> that signal is skipped gracefully.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2 id="install">2. Install</h2>
+      <p>Install from the <a href="https://www.powershellgallery.com/packages/Aer" target="_blank" rel="noopener">PowerShell Gallery</a> (recommended):</p>
+      <pre><code>Install-Module AER -Scope CurrentUser</code></pre>
+      <p>Or clone the repository to run from source (useful for development):</p>
+      <pre><code>git clone https://github.com/TrimTechBR/azure-estate-report.git
+cd azure-estate-report
+
+# Install the Azure dependencies (once)
+Install-Module Az.Accounts, Az.ResourceGraph -Scope CurrentUser
+
+# Import the module
+Import-Module ./AER.psd1</code></pre>
+
+      <h2 id="signin">3. Sign in to Azure</h2>
+      <pre><code>Connect-AzAccount</code></pre>
+      <p>AER uses your existing Azure context and credentials. It only issues read/list/query calls — nothing is created, changed or deleted.</p>
+
+      <h2 id="run">4. Generate the report</h2>
+      <pre><code># Report for every subscription you can access
+Invoke-AerReport -OpenReport</code></pre>
+      <p>The console shows progress as collectors run and the report renders:</p>
+      <pre><code>  AER · Azure Estate Report
+  ──────────────────────────────────────────────
+  ▶ Resolving Azure context…
+  ✓ Signed in as you@contoso.com  tenant: contoso.onmicrosoft.com
+  ✓ 21 subscription(s) in scope
+  ▶ Collecting estate data…  21 collectors · parallelism 4
+  ✓ Collected all 21 data sets
+  ▶ Rendering HTML report…
+  ✓ Report generated  C:\...\aer-report\index.html
+  ✓ Excel export      C:\...\aer-report\exports\aer-report.xlsx
+  ✓ PDF export        C:\...\aer-report\exports\aer-report.pdf
+  ✓ Done.</code></pre>
+
+      <h2 id="sample">5. Try it without Azure</h2>
+      <p>To validate the layout or capture screenshots without connecting to Azure, use the built-in sample dataset:</p>
+      <pre><code>Invoke-AerReport -SampleData -OutputPath .\aer-sample -OpenReport</code></pre>
+
+      <h2 id="output">6. Where the output goes</h2>
+      <p>By default the report is written to <code>.\aer-report\</code>:</p>
+      <pre><code>aer-report/
+├── index.html                 # open this
+├── assets/                     # style.css, app.js, data.js (embedded data)
+└── exports/
+    ├── aer-report.xlsx
+    └── aer-report.pdf</code></pre>
+      <div class="lead-note">
+        <strong>Heads up:</strong> the report contains environment metadata (resource names, IDs, configuration).
+        Treat the output folder as you would any infrastructure inventory.
+      </div>
+
+      <h2 id="next">Next steps</h2>
+      <ul>
+        <li><a href="usage.html">Usage &amp; parameters</a> — every parameter and common invocation patterns.</li>
+        <li><a href="report-reference.html">Report reference</a> — a guided tour of all eight domains.</li>
+        <li><a href="architecture.html">Architecture &amp; security</a> — how AER works under the hood.</li>
       </ul>
     </article>
   </div>
@@ -150,11 +177,11 @@ git push origin main</code></pre>
 
 <footer class="footer">
   <div class="container footer-grid">
-    <p>© <span data-current-year></span> TrimTechBR. Built for cloud, automation and open-source collaboration.</p>
+    <p>© <span data-current-year></span> TrimTechBR. Open source projects for cloud, automation and DevOps.</p>
     <div class="footer-links">
       <a href="../solutions/index.html">Solutions</a>
       <a href="../docs/getting-started.html">Docs</a>
-      <a href="https://github.com/TrimTechBR" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </footer>

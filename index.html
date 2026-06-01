@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home | TrimTechBR</title>
-  <meta name="description" content="TrimTechBR open-source cloud, automation and observability projects.">
+  <meta name="description" content="TrimTechBR open-source projects for cloud, automation and observability, home of AER — Azure Estate Report.">
   <meta property="og:title" content="Home | TrimTechBR">
-  <meta property="og:description" content="TrimTechBR open-source cloud, automation and observability projects.">
+  <meta property="og:description" content="TrimTechBR open-source projects for cloud, automation and observability, home of AER — Azure Estate Report.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/img/trimtech-header.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,9 +35,9 @@
         <button class="dropdown-trigger" aria-expanded="false">Solutions <span class="chevron">▾</span></button>
         <ul class="dropdown-menu">
           <li>
-            <a href="solutions/azure-observability-report.html">
+            <a href="solutions/aer.html">
               <span class="dropdown-kicker">Active project</span>
-              <span class="dropdown-title">Azure Observability Report</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
             </a>
           </li>
           <li>
@@ -52,29 +52,21 @@
       <li class="nav-item dropdown">
         <button class="dropdown-trigger" aria-expanded="false">Documentation <span class="chevron">▾</span></button>
         <ul class="dropdown-menu">
-          <li>
-            <a href="docs/getting-started.html">
-              <span class="dropdown-kicker">Start here</span>
-              <span class="dropdown-title">Getting started</span>
-            </a>
-          </li>
-          <li>
-            <a href="docs/contribution-guide.html">
-              <span class="dropdown-kicker">Open source</span>
-              <span class="dropdown-title">Contribution guide</span>
-            </a>
-          </li>
-          <li>
-            <a href="docs/roadmap.html">
-              <span class="dropdown-kicker">Planning</span>
-              <span class="dropdown-title">Roadmap</span>
-            </a>
-          </li>
+          <li><a href="docs/getting-started.html"><span class="dropdown-kicker">Start here</span><span class="dropdown-title">Getting started</span></a></li>
+          <li><a href="docs/usage.html"><span class="dropdown-kicker">Reference</span><span class="dropdown-title">Usage &amp; parameters</span></a></li>
+          <li><a href="docs/report-reference.html"><span class="dropdown-kicker">The report</span><span class="dropdown-title">Report reference</span></a></li>
+          <li><a href="docs/architecture.html"><span class="dropdown-kicker">Internals</span><span class="dropdown-title">Architecture &amp; security</span></a></li>
+          <li><a href="docs/contribution-guide.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Contribution guide</span></a></li>
         </ul>
       </li>
 
       <li><a class="nav-link" href="contact.html">Contact</a></li>
-      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link is-active" href="index.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link" href="index.pt-br.html">PT</a>
+      </li>
     </ul>
   </div>
 </header>
@@ -84,26 +76,28 @@
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <span class="eyebrow">Collaborative cloud engineering from Brazil</span>
-      <h1>Practical open-source solutions for cloud, automation and observability.</h1>
+      <span class="eyebrow">Open-source projects by two friends, from Brazil</span>
+      <h1>Practical solutions for cloud, automation and observability.</h1>
       <p class="lead">
-        TrimTechBR is a collaborative technology initiative created to build useful, well-documented
-        projects for cloud professionals, infrastructure teams and DevOps practitioners.
+        TrimTechBR is a personal initiative by two friends — Henderson Andrade and Henrique Mizael —
+        building and open-sourcing practical tools for cloud professionals, infrastructure teams and DevOps
+        practitioners. Our first project is <strong>AER — Azure Estate Report</strong>: read-only,
+        fully-offline HTML dashboards for your Azure estate, generated from a single PowerShell command.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="solutions/azure-observability-report.html">Explore Azure Observability Report</a>
+        <a class="btn btn-primary" href="solutions/aer.html">Explore AER</a>
         <a class="btn btn-secondary" href="docs/getting-started.html">Read the documentation</a>
       </div>
 
       <div class="stats-strip">
-        <div class="stat"><strong>01</strong><span>active solution</span></div>
-        <div class="stat"><strong>100%</strong><span>open-source mindset</span></div>
-        <div class="stat"><strong>∞</strong><span>ready for future projects</span></div>
+        <div class="stat"><strong>1</strong><span>open-source solution</span></div>
+        <div class="stat"><strong>2</strong><span>friends building it</span></div>
+        <div class="stat"><strong>100%</strong><span>open source</span></div>
       </div>
     </div>
 
     <div class="hero-card reveal">
-      <img src="assets/img/cloud-architecture.svg" alt="Cloud architecture illustration">
+      <img src="assets/img/aer/assessment-overview.png" alt="AER assessment overview dashboard">
     </div>
   </div>
 </section>
@@ -113,8 +107,8 @@
     <div class="section-header reveal">
       <h2>What we build</h2>
       <p>
-        The website is structured as a portfolio and documentation hub, so every future TrimTechBR
-        solution can have its own overview, architecture notes, installation guide and roadmap.
+        The website is structured as a portfolio and documentation hub, so every TrimTechBR solution can
+        have its own overview, architecture notes and installation guide.
       </p>
     </div>
 
@@ -127,7 +121,7 @@
       <article class="card reveal">
         <div class="card-icon">⚙</div>
         <h3>Automation</h3>
-        <p>Scripts, reusable modules and automation patterns for repeatable infrastructure and operational workflows.</p>
+        <p>Scripts, reusable PowerShell modules and automation patterns for repeatable infrastructure and operational workflows.</p>
       </article>
       <article class="card reveal">
         <div class="card-icon">↗</div>
@@ -141,46 +135,45 @@
 <section class="section" id="solutions">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Featured solution</h2>
+      <h2>Solutions</h2>
       <p>
-        The first TrimTechBR project is Azure Observability Report. The website is already prepared
-        to receive additional solutions in the future.
+        Everything we build is open source. AER — Azure Estate Report is our first project; more are on the
+        way as we find time to build them.
       </p>
     </div>
 
     <div class="grid-2">
       <article class="card solution-card reveal">
-        <img src="assets/img/observability-dashboard.svg" alt="Azure Observability Report dashboard illustration">
+        <img src="assets/img/aer/assessment-inventory.png" alt="AER resource inventory page">
         <div class="solution-content">
-          <h3>Azure Observability Report</h3>
+          <h3>AER — Azure Estate Report</h3>
           <p>
-            A project focused on producing clear visibility over Azure environments through structured
-            reports, operational insights and observability-oriented documentation.
+            A PowerShell 7 module that connects to Azure with your existing credentials, collects a
+            read-only inventory through Azure Resource Graph and ARM REST APIs, and renders a rich,
+            multi-page, self-contained HTML report — plus Excel and PDF exports.
           </p>
           <div class="badge-row">
+            <span class="badge-license badge-oss">Open Source</span>
             <span class="badge">Azure</span>
-            <span class="badge">Observability</span>
-            <span class="badge">Reporting</span>
-            <span class="badge">Automation</span>
+            <span class="badge">PowerShell 7</span>
+            <span class="badge">Offline</span>
           </div>
-          <a class="btn btn-secondary" href="solutions/azure-observability-report.html">View project</a>
+          <a class="btn btn-secondary" href="solutions/aer.html">View project</a>
         </div>
       </article>
 
       <article class="card reveal">
-        <div class="card-icon">＋</div>
-        <h3>Prepared for future solutions</h3>
+        <div class="card-icon">✦</div>
+        <h3>A two-friend project</h3>
         <p>
-          New projects can be added under the Solutions menu without changing the full website structure.
-          Each solution can have its own page, documentation set, GitHub repository link, screenshots and roadmap.
+          TrimTechBR is built in our spare time by Henderson and Henrique — open-source tools we wished we
+          had. AER is just the first; more are on the way.
         </p>
         <div class="badge-row">
-          <span class="badge">FinOps</span>
-          <span class="badge">Landing Zone</span>
-          <span class="badge">Governance</span>
-          <span class="badge">Security</span>
+          <span class="badge-license badge-oss">Open Source</span>
+          <span class="badge">More soon</span>
         </div>
-        <a class="btn btn-secondary" href="solutions/index.html">See portfolio structure</a>
+        <a class="btn btn-secondary" href="about.html">Who we are</a>
       </article>
     </div>
   </div>
@@ -203,11 +196,11 @@
 
 <footer class="footer">
   <div class="container footer-grid">
-    <p>© <span data-current-year></span> TrimTechBR. Built for cloud, automation and open-source collaboration.</p>
+    <p>© <span data-current-year></span> TrimTechBR. Open source projects for cloud, automation and DevOps.</p>
     <div class="footer-links">
       <a href="solutions/index.html">Solutions</a>
       <a href="docs/getting-started.html">Docs</a>
-      <a href="https://github.com/TrimTechBR" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </footer>

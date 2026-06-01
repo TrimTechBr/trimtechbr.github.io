@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uso &amp; parâmetros | Docs AER | TrimTechBR</title>
+  <meta name="description" content="Todos os parâmetros do Invoke-AerReport e padrões comuns de execução do AER — Azure Estate Report.">
+  <meta property="og:title" content="Uso &amp; parâmetros | Docs AER | TrimTechBR">
+  <meta property="og:description" content="Todos os parâmetros do Invoke-AerReport e padrões comuns de execução do AER — Azure Estate Report.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/img/trimtech-header.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../index.pt-br.html" aria-label="Início TrimTechBR">
+      <img src="../assets/img/trimtech-logo.png" alt="Logo TrimTechBR">
+      <strong><span>TrimTech</span><span>B</span><span>R</span></strong>
+    </a>
+
+    <button class="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu">
+      <li><a class="nav-link" href="../index.pt-br.html">Início</a></li>
+      <li><a class="nav-link" href="../about.pt-br.html">Quem somos</a></li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Soluções <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="../solutions/aer.pt-br.html">
+              <span class="dropdown-kicker">Projeto ativo</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="../solutions/index.pt-br.html">
+              <span class="dropdown-kicker">Portfólio</span>
+              <span class="dropdown-title">Todas as soluções</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Documentação <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li><a href="../docs/getting-started.pt-br.html"><span class="dropdown-kicker">Comece aqui</span><span class="dropdown-title">Primeiros passos</span></a></li>
+          <li><a href="../docs/usage.pt-br.html"><span class="dropdown-kicker">Referência</span><span class="dropdown-title">Uso &amp; parâmetros</span></a></li>
+          <li><a href="../docs/report-reference.pt-br.html"><span class="dropdown-kicker">O relatório</span><span class="dropdown-title">Referência do relatório</span></a></li>
+          <li><a href="../docs/architecture.pt-br.html"><span class="dropdown-kicker">Interno</span><span class="dropdown-title">Arquitetura &amp; segurança</span></a></li>
+          <li><a href="../docs/contribution-guide.pt-br.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Guia de contribuição</span></a></li>
+        </ul>
+      </li>
+
+      <li><a class="nav-link" href="../contact.pt-br.html">Contato</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link" href="usage.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link is-active" href="usage.pt-br.html">PT</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumbs"><a href="../index.pt-br.html">Início</a> / Documentação / Uso &amp; parâmetros</p>
+    <span class="eyebrow">Documentação</span>
+    <h1>Uso &amp; parâmetros</h1>
+    <p class="lead">
+      Tudo o que o <code>Invoke-AerReport</code> faz — o conjunto completo de parâmetros e os padrões de execução mais comuns.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">Nesta página</p>
+      <a href="#command">O comando</a>
+      <a href="#parameters">Parâmetros</a>
+      <a href="#examples">Exemplos</a>
+      <a href="#automation">Automação &amp; -PassThru</a>
+      <a href="#help">Ajuda embutida</a>
+    </aside>
+
+    <article class="doc-content">
+      <h2 id="command">O comando</h2>
+      <p>
+        O AER expõe um único ponto de entrada, <code>Invoke-AerReport</code>. Sem parâmetros, ele relata todas as
+        assinaturas do seu contexto Azure atual e grava o resultado em <code>.\aer-report</code>.
+      </p>
+      <pre><code>Invoke-AerReport</code></pre>
+
+      <h2 id="parameters">Parâmetros</h2>
+      <table>
+        <thead>
+          <tr><th>Parâmetro</th><th>Tipo</th><th>Padrão</th><th>Descrição</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>-OutputPath</code></td><td>string</td><td><code>.\aer-report</code></td><td>Pasta para o relatório HTML (criada se não existir). Ponto de entrada: <code>index.html</code>.</td></tr>
+          <tr><td><code>-SubscriptionId</code></td><td>string[]</td><td><em>(todas)</em></td><td>Um ou mais IDs de assinatura a incluir.</td></tr>
+          <tr><td><code>-ExcludeSubscriptionName</code></td><td>string[]</td><td><em>(nenhuma)</em></td><td>Nomes de exibição de assinaturas a excluir (exato, case-insensitive).</td></tr>
+          <tr><td><code>-MaxParallelCollectors</code></td><td>int (1–10)</td><td><code>4</code></td><td>Número de coletores a rodar simultaneamente.</td></tr>
+          <tr><td><code>-SampleData</code></td><td>switch</td><td>off</td><td>Gera um relatório com dados fictícios ricos sem conectar ao Azure. Útil para screenshots, demos e validação de layout.</td></tr>
+          <tr><td><code>-OpenReport</code></td><td>switch</td><td>off</td><td>Abre o relatório no navegador ao finalizar.</td></tr>
+          <tr><td><code>-PassThru</code></td><td>switch</td><td>off</td><td>Retorna um objeto de resumo (caminhos, contagens, duração).</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="examples">Exemplos</h2>
+      <pre><code># Todas as assinaturas do contexto atual
+Invoke-AerReport
+
+# Pasta de saída customizada + abrir ao terminar
+Invoke-AerReport -OutputPath C:\Reports\Contoso -OpenReport
+
+# Apenas assinaturas específicas
+Invoke-AerReport -SubscriptionId '00000000-0000-0000-0000-000000000000','1111...'
+
+# Excluir assinaturas por nome, com mais paralelismo
+Invoke-AerReport -ExcludeSubscriptionName 'Sandbox','Lab' -MaxParallelCollectors 8
+
+# Gerar um relatório de layout/demo com dados de exemplo embutidos
+Invoke-AerReport -SampleData -OutputPath .\aer-sample -OpenReport</code></pre>
+
+      <h2 id="automation">Automação &amp; -PassThru</h2>
+      <p>Use <code>-PassThru</code> para capturar um objeto de resumo utilizável em scripts e pipelines:</p>
+      <pre><code>$r = Invoke-AerReport -PassThru
+$r.Resources       # contagem de recursos
+$r.IndexHtml       # caminho do index.html
+$r.ExcelWorkbook   # caminho da exportação XLSX
+$r.PdfReport       # caminho da exportação PDF</code></pre>
+      <div class="lead-note">
+        Por ser somente-leitura e ter saída totalmente offline, o AER é seguro para agendar em um runner ou host de
+        automação que tenha um contexto Azure autenticado com acesso <code>Reader</code>.
+      </div>
+
+      <h2 id="help">Ajuda embutida</h2>
+      <p>A ajuda completa está disponível no console:</p>
+      <pre><code>Get-Help Invoke-AerReport -Full
+Get-Help Invoke-AerReport -Examples</code></pre>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <p>© <span data-current-year></span> TrimTechBR. Projetos open source para cloud, automação e DevOps.</p>
+    <div class="footer-links">
+      <a href="../solutions/index.pt-br.html">Soluções</a>
+      <a href="../docs/getting-started.pt-br.html">Docs</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

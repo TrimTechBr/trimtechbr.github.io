@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arquitetura &amp; segurança | Docs AER | TrimTechBR</title>
+  <meta name="description" content="Como o AER — Azure Estate Report coleta dados, renderiza o relatório e se mantém estritamente somente-leitura e offline.">
+  <meta property="og:title" content="Arquitetura &amp; segurança | Docs AER | TrimTechBR">
+  <meta property="og:description" content="Como o AER — Azure Estate Report coleta dados, renderiza o relatório e se mantém estritamente somente-leitura e offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/img/trimtech-header.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../index.pt-br.html" aria-label="Início TrimTechBR">
+      <img src="../assets/img/trimtech-logo.png" alt="Logo TrimTechBR">
+      <strong><span>TrimTech</span><span>B</span><span>R</span></strong>
+    </a>
+
+    <button class="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu">
+      <li><a class="nav-link" href="../index.pt-br.html">Início</a></li>
+      <li><a class="nav-link" href="../about.pt-br.html">Quem somos</a></li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Soluções <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="../solutions/aer.pt-br.html">
+              <span class="dropdown-kicker">Projeto ativo</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="../solutions/index.pt-br.html">
+              <span class="dropdown-kicker">Portfólio</span>
+              <span class="dropdown-title">Todas as soluções</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Documentação <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li><a href="../docs/getting-started.pt-br.html"><span class="dropdown-kicker">Comece aqui</span><span class="dropdown-title">Primeiros passos</span></a></li>
+          <li><a href="../docs/usage.pt-br.html"><span class="dropdown-kicker">Referência</span><span class="dropdown-title">Uso &amp; parâmetros</span></a></li>
+          <li><a href="../docs/report-reference.pt-br.html"><span class="dropdown-kicker">O relatório</span><span class="dropdown-title">Referência do relatório</span></a></li>
+          <li><a href="../docs/architecture.pt-br.html"><span class="dropdown-kicker">Interno</span><span class="dropdown-title">Arquitetura &amp; segurança</span></a></li>
+          <li><a href="../docs/contribution-guide.pt-br.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Guia de contribuição</span></a></li>
+        </ul>
+      </li>
+
+      <li><a class="nav-link" href="../contact.pt-br.html">Contato</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link" href="architecture.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link is-active" href="architecture.pt-br.html">PT</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumbs"><a href="../index.pt-br.html">Início</a> / Documentação / Arquitetura &amp; segurança</p>
+    <span class="eyebrow">Documentação</span>
+    <h1>Arquitetura &amp; segurança</h1>
+    <p class="lead">
+      Como o AER coleta dados, renderiza o relatório e se mantém estritamente somente-leitura e totalmente offline.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">Nesta página</p>
+      <a href="#layout">Layout do módulo</a>
+      <a href="#flow">Fluxo de dados</a>
+      <a href="#layers">Camadas de processamento</a>
+      <a href="#security">Segurança &amp; privacidade</a>
+    </aside>
+
+    <article class="doc-content">
+      <h2 id="layout">Layout do módulo</h2>
+      <p>O AER é um módulo PowerShell carregado por dot-sourcing, com separação clara entre coleta, orquestração, renderização e exportação:</p>
+      <pre><code>AER.psd1 / AER.psm1          Manifesto do módulo + loader (faz dot-source de tudo)
+Public/Invoke-AerReport.ps1  Orquestrador (contexto → coleta paralela → renderização)
+Core/ResourceGraph.ps1       Helper de consulta ARG, expansor de linhas columnar-safe, batch ARM, agregadores
+Collectors/*.ps1             Uma função Get-Aer* por domínio → retorna um objeto simples
+Renderer/
+  Dashboard.ps1              Registro de páginas, nav lateral, scaffolds HTML por página, shell do documento
+  Export.ps1                 Geração offline de XLSX/PDF e helpers nativos OpenXML/PDF
+  Assets/Script.ps1          O app vanilla-JS em um único IIFE (tabelas, gráficos, diagramas)
+  Assets/Style.ps1           A folha de estilos</code></pre>
+
+      <h2 id="flow">Fluxo de dados</h2>
+      <p>O fluxo é linear e fácil de entender:</p>
+      <ol>
+        <li>Os <strong>coletores</strong> consultam o Azure (Resource Graph + ARM REST) e retornam objetos PowerShell.</li>
+        <li>O <strong>orquestrador</strong> roda os coletores em paralelo e então serializa a saída deles em <code>window.AerData</code>.</li>
+        <li>O <strong>renderizador</strong> emite um arquivo HTML por página mais os <code>assets/</code> compartilhados (<code>style.css</code>, <code>app.js</code>, <code>data.js</code>).</li>
+        <li>O <strong>exportador</strong> cria <code>exports/aer-report.xlsx</code> e <code>exports/aer-report.pdf</code>.</li>
+        <li>No navegador, o JS lê <code>AerData</code> e constrói a UI no cliente — sem nenhum servidor envolvido.</li>
+      </ol>
+      <pre><code>Azure (ARG + ARM)  →  Coletores  →  Orquestrador  →  window.AerData
+                                                  ├→ Renderizador → HTML + assets/
+                                                  └→ Exportador   → exports/ (xlsx, pdf)</code></pre>
+
+      <h2 id="layers">Camadas de processamento</h2>
+      <table>
+        <thead><tr><th>Camada</th><th>Propósito</th></tr></thead>
+        <tbody>
+          <tr><td>Coleta</td><td>Obter dados de recursos, monitoramento, governança e segurança do Azure usando chamadas somente-leitura.</td></tr>
+          <tr><td>Processamento</td><td>Normalizar os achados em um modelo de relatório consistente e calcular agregados/KPIs.</td></tr>
+          <tr><td>Apresentação</td><td>Gerar saídas legíveis em HTML, XLSX e PDF para públicos técnicos e de gestão.</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="security">Segurança &amp; privacidade</h2>
+      <ul>
+        <li><strong>Somente-leitura por design.</strong> O AER só faz chamadas de leitura/listagem/consulta (Resource Graph + ARM GET / <code>POST …/summarize|queryResults|list</code>). Não executa nenhuma operação de escrita.</li>
+        <li><strong>Seus dados ficam com você.</strong> A coleta acontece localmente com as suas credenciais; o HTML resultante embute os dados em <code>assets/data.js</code>. Nada é enviado para lugar nenhum.</li>
+        <li><strong>Offline.</strong> O relatório gerado não tem dependências externas e funciona sob <code>file://</code>.</li>
+      </ul>
+      <div class="lead-note">
+        <strong>Trate a saída como sensível.</strong> O relatório contém metadados do ambiente (nomes de recursos,
+        IDs, configuração). Trate a pasta de saída como você trataria qualquer inventário de infraestrutura.
+      </div>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <p>© <span data-current-year></span> TrimTechBR. Projetos open source para cloud, automação e DevOps.</p>
+    <div class="footer-links">
+      <a href="../solutions/index.pt-br.html">Soluções</a>
+      <a href="../docs/getting-started.pt-br.html">Docs</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

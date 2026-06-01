@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guia de contribuição | Docs AER | TrimTechBR</title>
+  <meta name="description" content="Como contribuir com o AER — Azure Estate Report: setup de desenvolvimento, fluxo de branches e o padrão para adicionar um novo domínio.">
+  <meta property="og:title" content="Guia de contribuição | Docs AER | TrimTechBR">
+  <meta property="og:description" content="Como contribuir com o AER — Azure Estate Report: setup de desenvolvimento, fluxo de branches e o padrão para adicionar um novo domínio.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/img/trimtech-header.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../index.pt-br.html" aria-label="Início TrimTechBR">
+      <img src="../assets/img/trimtech-logo.png" alt="Logo TrimTechBR">
+      <strong><span>TrimTech</span><span>B</span><span>R</span></strong>
+    </a>
+
+    <button class="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu">
+      <li><a class="nav-link" href="../index.pt-br.html">Início</a></li>
+      <li><a class="nav-link" href="../about.pt-br.html">Quem somos</a></li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Soluções <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="../solutions/aer.pt-br.html">
+              <span class="dropdown-kicker">Projeto ativo</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="../solutions/index.pt-br.html">
+              <span class="dropdown-kicker">Portfólio</span>
+              <span class="dropdown-title">Todas as soluções</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Documentação <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li><a href="../docs/getting-started.pt-br.html"><span class="dropdown-kicker">Comece aqui</span><span class="dropdown-title">Primeiros passos</span></a></li>
+          <li><a href="../docs/usage.pt-br.html"><span class="dropdown-kicker">Referência</span><span class="dropdown-title">Uso &amp; parâmetros</span></a></li>
+          <li><a href="../docs/report-reference.pt-br.html"><span class="dropdown-kicker">O relatório</span><span class="dropdown-title">Referência do relatório</span></a></li>
+          <li><a href="../docs/architecture.pt-br.html"><span class="dropdown-kicker">Interno</span><span class="dropdown-title">Arquitetura &amp; segurança</span></a></li>
+          <li><a href="../docs/contribution-guide.pt-br.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Guia de contribuição</span></a></li>
+        </ul>
+      </li>
+
+      <li><a class="nav-link" href="../contact.pt-br.html">Contato</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link" href="contribution-guide.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link is-active" href="contribution-guide.pt-br.html">PT</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumbs"><a href="../index.pt-br.html">Início</a> / Documentação / Guia de contribuição</p>
+    <span class="eyebrow">Open source</span>
+    <h1>Guia de contribuição</h1>
+    <p class="lead">
+      Contribuições são muito bem-vindas — novos coletores, páginas, checagens, correções e docs. Veja como o AER é desenvolvido.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">Nesta página</p>
+      <a href="#setup">Setup de desenvolvimento</a>
+      <a href="#flow">Fluxo de branches &amp; PR</a>
+      <a href="#section">Adicionar um novo domínio</a>
+      <a href="#gotchas">Convenções &amp; armadilhas</a>
+      <a href="#validate">Validar antes de commitar</a>
+    </aside>
+
+    <article class="doc-content">
+      <h2 id="setup">Setup de desenvolvimento</h2>
+      <pre><code>git clone https://github.com/TrimTechBR/azure-estate-report.git
+cd azure-estate-report
+Install-Module Az.Accounts, Az.ResourceGraph -Scope CurrentUser
+Connect-AzAccount
+Import-Module ./AER.psd1 -Force
+Invoke-AerReport -OutputPath ./output-test   # ./output-test está no gitignore</code></pre>
+      <div class="lead-note">
+        <strong>Dica:</strong> o PowerShell faz cache dos módulos importados. Após editar qualquer <code>.ps1</code>,
+        rode novamente <code>Import-Module ./AER.psd1 -Force</code> (ou use um terminal novo) antes de regenerar.
+      </div>
+
+      <h2 id="flow">Fluxo de branches &amp; PR</h2>
+      <ol>
+        <li>Crie a branch a partir de <code>develop</code> (ex.: <code>feature-xxxx</code> / <code>fix-...</code>).</li>
+        <li>Faça commits focados.</li>
+        <li>Abra um Pull Request para <code>develop</code>. Mantenha os PRs com escopo de uma feature/correção.</li>
+        <li>Descreva o que mudou e como você validou.</li>
+      </ol>
+      <p>As releases são publicadas a partir de tags de versão na <code>main</code>; o pipeline de publicação só roda para uma tag de release cujo commit esteja na <code>main</code>.</p>
+
+      <h2 id="section">Adicionar um novo domínio (o padrão)</h2>
+      <ol>
+        <li><strong>Coletor</strong> — crie <code>Collectors/MyThing.ps1</code> com <code>Get-AerMyThing</code> retornando um <code>[pscustomobject]</code>.</li>
+        <li><strong>Conecte</strong> em <code>Public/Invoke-AerReport.ps1</code> (quatro pontos de toque): o array <code>$collectors</code>, o switch <code>$collectorFile</code>, o switch <code>$data</code> e a chave <code>$reportData</code>.</li>
+        <li><strong>Página</strong> — em <code>Renderer/Dashboard.ps1</code>: adicione uma entrada em <code>$script:AerPages</code>, um <code>navItem</code> na nav lateral e um scaffold HTML em <code>Get-AerPageContent</code>.</li>
+        <li><strong>Renderização</strong> — em <code>Renderer/Assets/Script.ps1</code>: leia <code>d.myThing</code> e construa a UI (reaproveite <code>initDataTable</code>, <code>renderDonut</code>, <code>renderBars</code>, <code>setHeader</code>, <code>kvGrid</code> e os helpers de cell-pill).</li>
+      </ol>
+
+      <h2 id="gotchas">Convenções &amp; armadilhas (aprendidas na prática)</h2>
+      <ul>
+        <li><strong>Alvo PowerShell 7;</strong> use apenas chamadas Azure somente-leitura e amigáveis a <code>CancellationToken</code>.</li>
+        <li><strong>Peculiaridade columnar do ARG:</strong> o <code>Search-AzGraph</code> pode, de forma intermitente, retornar um único objeto <em>columnar</em> em vez de objetos por linha. Para queries <code>project</code> só com escalares, envolva o resultado com <code>Expand-AerRows</code> (em <code>Core/ResourceGraph.ps1</code>). Não use em queries que legitimamente retornam colunas com valores de array.</li>
+        <li><strong>Recursos com escopo de management group</strong> (ex.: policy assignments/exemptions) são <strong>descartados</strong> por uma query com escopo de assinatura — consulte o endpoint REST do ARG <strong>sem</strong> filtro de <code>subscriptions</code> (e <code>resultFormat=objectArray</code>) quando precisar do escopo de MG.</li>
+        <li><strong>Palavras reservadas do KQL:</strong> não use <code>kind</code> como coluna de saída em <code>project</code> (faça alias, ex.: <code>dcrKind = tostring(kind)</code>).</li>
+        <li><strong>Variáveis automáticas do PowerShell:</strong> nunca reutilize <code>$pid</code> ou <code>$host</code> como suas próprias variáveis (são somente-leitura).</li>
+        <li><strong>Arrays JSON:</strong> o <code>ConvertTo-Json</code> desembrulha arrays de um único elemento — o lado JS normaliza listas com <code>toArr()</code>; o <code>ConvertFrom-Json</code> do PS7 converte datas ISO automaticamente para <code>[datetime]</code> (formate de forma defensiva).</li>
+        <li><strong>Batch ARM:</strong> use <code>Invoke-AerArmBatch</code> (≤20 requisições por chamada) para REST por recurso (ex.: diagnostic settings).</li>
+      </ul>
+
+      <h2 id="validate">Validar antes de commitar</h2>
+      <pre><code>[System.Management.Automation.Language.Parser]::ParseFile('path\to\file.ps1',[ref]$null,[ref]([ref]$errs).Value)
+Import-Module ./AER.psd1 -Force; Invoke-AerReport -OutputPath ./output-test</code></pre>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <p>© <span data-current-year></span> TrimTechBR. Projetos open source para cloud, automação e DevOps.</p>
+    <div class="footer-links">
+      <a href="../solutions/index.pt-br.html">Soluções</a>
+      <a href="../docs/getting-started.pt-br.html">Docs</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

@@ -45,3 +45,38 @@ const currentYear = document.querySelector("[data-current-year]");
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
 }
+
+// Lightbox: click a screenshot figure to expand it
+const shotImages = document.querySelectorAll(".shot img");
+if (shotImages.length) {
+  const lightbox = document.createElement("div");
+  lightbox.className = "lightbox";
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.innerHTML = '<button class="lightbox-close" type="button" aria-label="Close">×</button><img alt="">';
+  document.body.appendChild(lightbox);
+
+  const lightboxImg = lightbox.querySelector("img");
+
+  const openLightbox = (src, alt) => {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightbox.classList.add("open");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove("open");
+    lightboxImg.removeAttribute("src");
+    document.body.style.overflow = "";
+  };
+
+  shotImages.forEach((img) => {
+    img.addEventListener("click", () => openLightbox(img.currentSrc || img.src, img.alt));
+  });
+
+  lightbox.addEventListener("click", closeLightbox);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+  });
+}

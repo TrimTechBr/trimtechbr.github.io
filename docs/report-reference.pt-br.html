@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Referência do relatório | Docs AER | TrimTechBR</title>
+  <meta name="description" content="Um tour guiado, tela a tela, por cada página do dashboard do AER — Azure Estate Report.">
+  <meta property="og:title" content="Referência do relatório | Docs AER | TrimTechBR">
+  <meta property="og:description" content="Um tour guiado, tela a tela, por cada página do dashboard do AER — Azure Estate Report.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/img/trimtech-header.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../index.pt-br.html" aria-label="Início TrimTechBR">
+      <img src="../assets/img/trimtech-logo.png" alt="Logo TrimTechBR">
+      <strong><span>TrimTech</span><span>B</span><span>R</span></strong>
+    </a>
+
+    <button class="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu">
+      <li><a class="nav-link" href="../index.pt-br.html">Início</a></li>
+      <li><a class="nav-link" href="../about.pt-br.html">Quem somos</a></li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Soluções <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="../solutions/aer.pt-br.html">
+              <span class="dropdown-kicker">Projeto ativo</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="../solutions/index.pt-br.html">
+              <span class="dropdown-kicker">Portfólio</span>
+              <span class="dropdown-title">Todas as soluções</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Documentação <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li><a href="../docs/getting-started.pt-br.html"><span class="dropdown-kicker">Comece aqui</span><span class="dropdown-title">Primeiros passos</span></a></li>
+          <li><a href="../docs/usage.pt-br.html"><span class="dropdown-kicker">Referência</span><span class="dropdown-title">Uso &amp; parâmetros</span></a></li>
+          <li><a href="../docs/report-reference.pt-br.html"><span class="dropdown-kicker">O relatório</span><span class="dropdown-title">Referência do relatório</span></a></li>
+          <li><a href="../docs/architecture.pt-br.html"><span class="dropdown-kicker">Interno</span><span class="dropdown-title">Arquitetura &amp; segurança</span></a></li>
+          <li><a href="../docs/contribution-guide.pt-br.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Guia de contribuição</span></a></li>
+        </ul>
+      </li>
+
+      <li><a class="nav-link" href="../contact.pt-br.html">Contato</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link" href="report-reference.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link is-active" href="report-reference.pt-br.html">PT</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumbs"><a href="../index.pt-br.html">Início</a> / Documentação / Referência do relatório</p>
+    <span class="eyebrow">Documentação</span>
+    <h1>Referência do relatório</h1>
+    <p class="lead">
+      Um tour guiado por cada domínio do dashboard do AER. Toda tabela de dados suporta busca global, filtros
+      multi-seleção por coluna, exibir/ocultar colunas (persistido), redimensionamento de colunas, paginação e um
+      accordion de detalhes expansível.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">Domínios</p>
+      <a href="#assessment">Assessment</a>
+      <a href="#compute">Compute</a>
+      <a href="#databases">Bancos de dados</a>
+      <a href="#applications">Aplicações</a>
+      <a href="#network">Rede</a>
+      <a href="#observability">Observabilidade</a>
+      <a href="#policy">Policy</a>
+      <a href="#security">Segurança</a>
+      <a href="#findings">Findings</a>
+    </aside>
+
+    <div>
+      <section class="area" id="assessment">
+        <span class="area-kicker">Assessment</span>
+        <h2>Assessment de todo o ambiente</h2>
+        <p>
+          O ponto de entrada do relatório. A visão geral resume todo o ambiente com KPIs e gráficos de distribuição;
+          o inventário lista cada recurso com filtragem rica; a estrutura de cloud mapeia management groups e
+          assinaturas; e o Azure Advisor traz as recomendações da Microsoft.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot"><img src="../assets/img/aer/assessment-overview.png" alt="Visão geral do assessment"><figcaption>Visão geral — KPIs e distribuição de todo o ambiente</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/assessment-inventory.png" alt="Inventário de recursos"><figcaption>Inventário de recursos — cada recurso, com busca &amp; filtros</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/assessment-cloudStructure.png" alt="Estrutura de cloud"><figcaption>Estrutura de cloud — management groups &amp; assinaturas</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/assessment-advisor.png" alt="Azure Advisor"><figcaption>Azure Advisor — recomendações da Microsoft</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="area" id="compute">
+        <span class="area-kicker">Compute</span>
+        <h2>Máquinas virtuais &amp; scale sets</h2>
+        <p>
+          Inventário de compute em todo o tenant: máquinas virtuais com tamanho, SO, estado de energia e detalhes de
+          disco, e virtual machine scale sets com capacidade e configuração.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot"><img src="../assets/img/aer/compute-vm.png" alt="Máquinas virtuais"><figcaption>Máquinas virtuais</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/compute-vmss.png" alt="Virtual machine scale sets"><figcaption>Virtual Machine Scale Sets</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="area" id="databases">
+        <span class="area-kicker">Bancos de dados</span>
+        <h2>Serviços de dados</h2>
+        <p>
+          Uma visão completa dos serviços de dados: uma visão geral mais páginas dedicadas para bancos relacionais
+          (incluindo SQL em VM), NoSQL, cache, analytics e table storage.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot"><img src="../assets/img/aer/databases-overview.png" alt="Visão geral de bancos de dados"><figcaption>Visão geral</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/databases-relational.png" alt="Bancos relacionais"><figcaption>Relacional (incl. SQL em VM)</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/databases-nosql.png" alt="Bancos NoSQL"><figcaption>NoSQL</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/databases-cache.png" alt="Cache"><figcaption>Cache</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/databases-analytics.png" alt="Analytics"><figcaption>Analytics</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/databases-tableStorage.png" alt="Table storage"><figcaption>Table Storage</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="area" id="applications">
+        <span class="area-kicker">Aplicações</span>
+        <h2>Plataformas de aplicação</h2>
+        <p>
+          Hospedagem de aplicações em todo o ambiente: web / app services, functions &amp; logic apps, containers,
+          serviços de API &amp; integração, e clusters AKS — cada um com sua página e uma visão geral.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot"><img src="../assets/img/aer/applications-overview.png" alt="Visão geral de aplicações"><figcaption>Visão geral</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/applications-webapp.png" alt="Web e app services"><figcaption>Web / App Services</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/applications-function.png" alt="Functions e logic apps"><figcaption>Functions &amp; Logic Apps</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/applications-container.png" alt="Containers"><figcaption>Containers</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/applications-api.png" alt="API e integração"><figcaption>API &amp; Integração</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/applications-aks.png" alt="Clusters AKS"><figcaption>AKS</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="area" id="network">
+        <span class="area-kicker">Rede</span>
+        <h2>Redes</h2>
+        <p>
+          Postura de rede: uma visão geral com utilização de IP, DNS e balanceadores; virtual networks com subnets,
+          rotas definidas pelo usuário e um diagrama de peering interativo; e load balancers.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot"><img src="../assets/img/aer/network-overview.png" alt="Visão geral de rede"><figcaption>Visão geral — utilização de IP, DNS, balanceadores</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/network-vnet.png" alt="Virtual networks"><figcaption>Virtual Networks — subnets, UDRs, diagrama de peering</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/network-lbs.png" alt="Load balancers"><figcaption>Load Balancers</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="area" id="observability">
+        <span class="area-kicker">Observabilidade</span>
+        <h2>Monitoramento &amp; observabilidade</h2>
+        <p>
+          Cobertura de observabilidade: uma visão de cobertura, diagnostic settings por recurso, o Azure Monitor Agent
+          e o mapeamento de coleta de dados (um diagrama interativo VM→DCR→destino), e um inventário de workspaces
+          Log Analytics e recursos Application Insights.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot"><img src="../assets/img/aer/observability-overview.png" alt="Visão geral de observabilidade"><figcaption>Visão de cobertura</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/observability-diagSettings.png" alt="Diagnostic settings"><figcaption>Diagnostic Settings</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/observability-ama-dcr.png" alt="AMA e coleta de dados"><figcaption>AMA &amp; Coleta de dados — VM→DCR→destino</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/observability-inventory.png" alt="Inventário de observabilidade"><figcaption>Inventário — Log Analytics / App Insights</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="area" id="policy">
+        <span class="area-kicker">Policy</span>
+        <h2>Azure Policy &amp; governança</h2>
+        <p>
+          Postura de governança: uma visão geral de conformidade e assignments por efeito, exemptions de policy, e
+          tarefas de remediação.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot"><img src="../assets/img/aer/policy-overview.png" alt="Visão geral de policy"><figcaption>Visão geral — conformidade &amp; assignments por efeito</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/policy-exemption.png" alt="Exemptions de policy"><figcaption>Exemptions</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/policy-remediation.png" alt="Remediação de policy"><figcaption>Remediação</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="area" id="security">
+        <span class="area-kicker">Segurança</span>
+        <h2>Microsoft Defender for Cloud</h2>
+        <p>
+          Postura de segurança: uma visão geral do Defender for Cloud com cobertura de planos, e a lista completa de
+          recomendações de segurança.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot"><img src="../assets/img/aer/security-overview.png" alt="Visão geral de segurança"><figcaption>Visão geral do Defender for Cloud — cobertura de planos</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/security-recommendation.png" alt="Recomendações de segurança"><figcaption>Recomendações</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="area" id="findings">
+        <span class="area-kicker">Findings</span>
+        <h2>Findings transversais</h2>
+        <p>
+          O AER consolida findings acionáveis de todo o ambiente: gaps gerais de segurança/configuração, oportunidades
+          de otimização de custo e recomendações de observabilidade.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot"><img src="../assets/img/aer/findings-general.png" alt="Findings gerais"><figcaption>Geral — gaps de segurança/config</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/findings-cost.png" alt="Findings de custo"><figcaption>Otimização de custo</figcaption></figure>
+          <figure class="shot"><img src="../assets/img/aer/findings-observability.png" alt="Findings de observabilidade"><figcaption>Recomendações de observabilidade</figcaption></figure>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <p>© <span data-current-year></span> TrimTechBR. Projetos open source para cloud, automação e DevOps.</p>
+    <div class="footer-links">
+      <a href="../solutions/index.pt-br.html">Soluções</a>
+      <a href="../docs/getting-started.pt-br.html">Docs</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

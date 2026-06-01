@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contribution guide | TrimTechBR</title>
-  <meta name="description" content="Contribution model for TrimTechBR open-source projects.">
-  <meta property="og:title" content="Contribution guide | TrimTechBR">
-  <meta property="og:description" content="Contribution model for TrimTechBR open-source projects.">
+  <title>Contribution guide | AER docs | TrimTechBR</title>
+  <meta name="description" content="How to contribute to AER — Azure Estate Report: development setup, branching flow and the pattern for adding a new domain section.">
+  <meta property="og:title" content="Contribution guide | AER docs | TrimTechBR">
+  <meta property="og:description" content="How to contribute to AER — Azure Estate Report: development setup, branching flow and the pattern for adding a new domain section.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="../assets/img/trimtech-header.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,9 +35,9 @@
         <button class="dropdown-trigger" aria-expanded="false">Solutions <span class="chevron">▾</span></button>
         <ul class="dropdown-menu">
           <li>
-            <a href="../solutions/azure-observability-report.html">
+            <a href="../solutions/aer.html">
               <span class="dropdown-kicker">Active project</span>
-              <span class="dropdown-title">Azure Observability Report</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
             </a>
           </li>
           <li>
@@ -52,29 +52,21 @@
       <li class="nav-item dropdown">
         <button class="dropdown-trigger" aria-expanded="false">Documentation <span class="chevron">▾</span></button>
         <ul class="dropdown-menu">
-          <li>
-            <a href="../docs/getting-started.html">
-              <span class="dropdown-kicker">Start here</span>
-              <span class="dropdown-title">Getting started</span>
-            </a>
-          </li>
-          <li>
-            <a href="../docs/contribution-guide.html">
-              <span class="dropdown-kicker">Open source</span>
-              <span class="dropdown-title">Contribution guide</span>
-            </a>
-          </li>
-          <li>
-            <a href="../docs/roadmap.html">
-              <span class="dropdown-kicker">Planning</span>
-              <span class="dropdown-title">Roadmap</span>
-            </a>
-          </li>
+          <li><a href="../docs/getting-started.html"><span class="dropdown-kicker">Start here</span><span class="dropdown-title">Getting started</span></a></li>
+          <li><a href="../docs/usage.html"><span class="dropdown-kicker">Reference</span><span class="dropdown-title">Usage &amp; parameters</span></a></li>
+          <li><a href="../docs/report-reference.html"><span class="dropdown-kicker">The report</span><span class="dropdown-title">Report reference</span></a></li>
+          <li><a href="../docs/architecture.html"><span class="dropdown-kicker">Internals</span><span class="dropdown-title">Architecture &amp; security</span></a></li>
+          <li><a href="../docs/contribution-guide.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Contribution guide</span></a></li>
         </ul>
       </li>
 
       <li><a class="nav-link" href="../contact.html">Contact</a></li>
-      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link is-active" href="contribution-guide.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link" href="contribution-guide.pt-br.html">PT</a>
+      </li>
     </ul>
   </div>
 </header>
@@ -87,28 +79,67 @@
     <span class="eyebrow">Open source</span>
     <h1>Contribution guide</h1>
     <p class="lead">
-      A simple contribution model for future TrimTechBR projects and documentation improvements.
+      Contributions are very welcome — new collectors, pages, checks, fixes and docs. Here is how AER is developed.
     </p>
   </div>
 </section>
 
 <section class="section">
-  <div class="container doc-content">
-    <h2>How to contribute</h2>
-    <ol>
-      <li>Open an issue describing the improvement, bug or new idea.</li>
-      <li>Create a branch using a clear name, such as <code>feature/add-new-report-section</code>.</li>
-      <li>Submit a pull request with a concise description and screenshots when relevant.</li>
-      <li>Keep documentation updated with every functional change.</li>
-    </ol>
+  <div class="container content-layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">On this page</p>
+      <a href="#setup">Development setup</a>
+      <a href="#flow">Branching &amp; PR flow</a>
+      <a href="#section">Add a new domain section</a>
+      <a href="#gotchas">Conventions &amp; gotchas</a>
+      <a href="#validate">Validate before committing</a>
+    </aside>
 
-    <h2>Standards</h2>
-    <ul>
-      <li>Prefer clear, practical documentation.</li>
-      <li>Keep scripts and examples reusable.</li>
-      <li>Avoid hardcoded tenant-specific information.</li>
-      <li>Use consistent naming and folder structure.</li>
-    </ul>
+    <article class="doc-content">
+      <h2 id="setup">Development setup</h2>
+      <pre><code>git clone https://github.com/TrimTechBR/azure-estate-report.git
+cd azure-estate-report
+Install-Module Az.Accounts, Az.ResourceGraph -Scope CurrentUser
+Connect-AzAccount
+Import-Module ./AER.psd1 -Force
+Invoke-AerReport -OutputPath ./output-test   # ./output-test is git-ignored</code></pre>
+      <div class="lead-note">
+        <strong>Tip:</strong> PowerShell caches imported modules. After editing any <code>.ps1</code>, re-run
+        <code>Import-Module ./AER.psd1 -Force</code> (or use a fresh terminal) before regenerating.
+      </div>
+
+      <h2 id="flow">Branching &amp; PR flow</h2>
+      <ol>
+        <li>Branch off <code>develop</code> (e.g. <code>feature-xxxx</code> / <code>fix-...</code>).</li>
+        <li>Make focused commits.</li>
+        <li>Open a Pull Request into <code>develop</code>. Keep PRs scoped to one feature/fix.</li>
+        <li>Describe what changed and how you validated it.</li>
+      </ol>
+      <p>Releases are published from version tags on <code>main</code>; the publish pipeline only runs for a release tag whose commit is on <code>main</code>.</p>
+
+      <h2 id="section">Add a new domain section (the pattern)</h2>
+      <ol>
+        <li><strong>Collector</strong> — create <code>Collectors/MyThing.ps1</code> with <code>Get-AerMyThing</code> returning a <code>[pscustomobject]</code>.</li>
+        <li><strong>Wire it</strong> in <code>Public/Invoke-AerReport.ps1</code> (four touch points): the <code>$collectors</code> array, the <code>$collectorFile</code> switch, the <code>$data</code> switch, and the <code>$reportData</code> key.</li>
+        <li><strong>Page</strong> — in <code>Renderer/Dashboard.ps1</code>: add a <code>$script:AerPages</code> entry, a <code>navItem</code> in the sidebar, and an HTML scaffold in <code>Get-AerPageContent</code>.</li>
+        <li><strong>Render</strong> — in <code>Renderer/Assets/Script.ps1</code>: read <code>d.myThing</code> and build the UI (reuse <code>initDataTable</code>, <code>renderDonut</code>, <code>renderBars</code>, <code>setHeader</code>, <code>kvGrid</code>, the cell-pill helpers).</li>
+      </ol>
+
+      <h2 id="gotchas">Conventions &amp; gotchas (learned the hard way)</h2>
+      <ul>
+        <li><strong>Target PowerShell 7;</strong> use <code>CancellationToken</code>-friendly, read-only Azure calls only.</li>
+        <li><strong>ARG columnar quirk:</strong> <code>Search-AzGraph</code> may intermittently return one <em>columnar</em> object instead of per-row objects. For scalar-only <code>project</code> queries, wrap results with <code>Expand-AerRows</code> (in <code>Core/ResourceGraph.ps1</code>). Don't use it on queries that legitimately return array-valued columns.</li>
+        <li><strong>Management-group-scoped resources</strong> (e.g. Policy assignments/exemptions) are <strong>dropped</strong> by a subscription-scoped query — query the ARG REST endpoint <strong>without</strong> a <code>subscriptions</code> filter (and <code>resultFormat=objectArray</code>) when you need MG scope.</li>
+        <li><strong>KQL reserved words:</strong> don't use <code>kind</code> as a <code>project</code> output column (alias it, e.g. <code>dcrKind = tostring(kind)</code>).</li>
+        <li><strong>PowerShell automatic vars:</strong> never reuse <code>$pid</code> or <code>$host</code> as your own variables (read-only).</li>
+        <li><strong>JSON arrays:</strong> <code>ConvertTo-Json</code> unwraps single-element arrays — the JS side normalizes lists with <code>toArr()</code>; PS7 <code>ConvertFrom-Json</code> auto-parses ISO dates to <code>[datetime]</code> (format defensively).</li>
+        <li><strong>ARM batch:</strong> use <code>Invoke-AerArmBatch</code> (≤20 requests/call) for per-resource REST (e.g. diagnostic settings).</li>
+      </ul>
+
+      <h2 id="validate">Validate before committing</h2>
+      <pre><code>[System.Management.Automation.Language.Parser]::ParseFile('path\to\file.ps1',[ref]$null,[ref]([ref]$errs).Value)
+Import-Module ./AER.psd1 -Force; Invoke-AerReport -OutputPath ./output-test</code></pre>
+    </article>
   </div>
 </section>
 
@@ -116,11 +147,11 @@
 
 <footer class="footer">
   <div class="container footer-grid">
-    <p>© <span data-current-year></span> TrimTechBR. Built for cloud, automation and open-source collaboration.</p>
+    <p>© <span data-current-year></span> TrimTechBR. Open source projects for cloud, automation and DevOps.</p>
     <div class="footer-links">
       <a href="../solutions/index.html">Solutions</a>
       <a href="../docs/getting-started.html">Docs</a>
-      <a href="https://github.com/TrimTechBR" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </footer>

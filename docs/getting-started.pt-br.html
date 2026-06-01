@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Primeiros passos | Docs AER | TrimTechBR</title>
+  <meta name="description" content="Instale o AER — Azure Estate Report e gere seu primeiro relatório Azure somente-leitura e offline.">
+  <meta property="og:title" content="Primeiros passos | Docs AER | TrimTechBR">
+  <meta property="og:description" content="Instale o AER — Azure Estate Report e gere seu primeiro relatório Azure somente-leitura e offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/img/trimtech-header.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="../index.pt-br.html" aria-label="Início TrimTechBR">
+      <img src="../assets/img/trimtech-logo.png" alt="Logo TrimTechBR">
+      <strong><span>TrimTech</span><span>B</span><span>R</span></strong>
+    </a>
+
+    <button class="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu">
+      <li><a class="nav-link" href="../index.pt-br.html">Início</a></li>
+      <li><a class="nav-link" href="../about.pt-br.html">Quem somos</a></li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Soluções <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="../solutions/aer.pt-br.html">
+              <span class="dropdown-kicker">Projeto ativo</span>
+              <span class="dropdown-title">AER — Azure Estate Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="../solutions/index.pt-br.html">
+              <span class="dropdown-kicker">Portfólio</span>
+              <span class="dropdown-title">Todas as soluções</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button class="dropdown-trigger" aria-expanded="false">Documentação <span class="chevron">▾</span></button>
+        <ul class="dropdown-menu">
+          <li><a href="../docs/getting-started.pt-br.html"><span class="dropdown-kicker">Comece aqui</span><span class="dropdown-title">Primeiros passos</span></a></li>
+          <li><a href="../docs/usage.pt-br.html"><span class="dropdown-kicker">Referência</span><span class="dropdown-title">Uso &amp; parâmetros</span></a></li>
+          <li><a href="../docs/report-reference.pt-br.html"><span class="dropdown-kicker">O relatório</span><span class="dropdown-title">Referência do relatório</span></a></li>
+          <li><a href="../docs/architecture.pt-br.html"><span class="dropdown-kicker">Interno</span><span class="dropdown-title">Arquitetura &amp; segurança</span></a></li>
+          <li><a href="../docs/contribution-guide.pt-br.html"><span class="dropdown-kicker">Open source</span><span class="dropdown-title">Guia de contribuição</span></a></li>
+        </ul>
+      </li>
+
+      <li><a class="nav-link" href="../contact.pt-br.html">Contato</a></li>
+      <li><a class="btn btn-primary" href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="nav-item lang-switch">
+        <a class="lang-link" href="getting-started.html">EN</a>
+        <span class="lang-sep">/</span>
+        <a class="lang-link is-active" href="getting-started.pt-br.html">PT</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumbs"><a href="../index.pt-br.html">Início</a> / Documentação / Primeiros passos</p>
+    <span class="eyebrow">Documentação</span>
+    <h1>Primeiros passos com o AER</h1>
+    <p class="lead">
+      Instale o AER — Azure Estate Report e gere seu primeiro relatório Azure somente-leitura e totalmente offline em poucos minutos.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-layout">
+    <aside class="sidebar">
+      <p class="sidebar-title">Nesta página</p>
+      <a href="#requirements">1. Requisitos</a>
+      <a href="#install">2. Instalação</a>
+      <a href="#signin">3. Autenticar no Azure</a>
+      <a href="#run">4. Gerar o relatório</a>
+      <a href="#sample">5. Testar sem Azure</a>
+      <a href="#output">6. Onde fica a saída</a>
+      <a href="#next">Próximos passos</a>
+    </aside>
+
+    <article class="doc-content">
+      <h2 id="requirements">1. Requisitos</h2>
+      <ul>
+        <li><strong>PowerShell 7.0+</strong> (<code>pwsh</code>) — Windows, macOS ou Linux.</li>
+        <li><strong>Módulos Az do PowerShell</strong>: <code>Az.Accounts</code> e <code>Az.ResourceGraph</code>.</li>
+        <li>Uma <strong>sessão Azure autenticada</strong> via <code>Connect-AzAccount</code>.</li>
+        <li><strong>RBAC do Azure</strong> no escopo que deseja relatar:
+          <ul>
+            <li><code>Reader</code> — mínimo, para inventário e a maioria das páginas.</li>
+            <li><code>Monitoring Reader</code> — recomendado, para dados de observabilidade mais ricos.</li>
+            <li>Para ler configurações de App Service (cobertura de App Insights) a identidade precisa de <code>Microsoft.Web/sites/config/list/Action</code> (ex.: <em>Website Contributor</em>); com <em>Reader</em> puro esse sinal é ignorado de forma graciosa.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2 id="install">2. Instalação</h2>
+      <p>Instale a partir do <a href="https://www.powershellgallery.com/packages/Aer" target="_blank" rel="noopener">PowerShell Gallery</a> (recomendado):</p>
+      <pre><code>Install-Module AER -Scope CurrentUser</code></pre>
+      <p>Ou clone o repositório para rodar a partir do código-fonte (útil para desenvolvimento):</p>
+      <pre><code>git clone https://github.com/TrimTechBR/azure-estate-report.git
+cd azure-estate-report
+
+# Instale as dependências do Azure (uma vez)
+Install-Module Az.Accounts, Az.ResourceGraph -Scope CurrentUser
+
+# Importe o módulo
+Import-Module ./AER.psd1</code></pre>
+
+      <h2 id="signin">3. Autenticar no Azure</h2>
+      <pre><code>Connect-AzAccount</code></pre>
+      <p>O AER usa o seu contexto e credenciais do Azure já existentes. Ele só faz chamadas de leitura/listagem/consulta — nada é criado, alterado ou removido.</p>
+
+      <h2 id="run">4. Gerar o relatório</h2>
+      <pre><code># Relatório para todas as assinaturas a que você tem acesso
+Invoke-AerReport -OpenReport</code></pre>
+      <p>O console mostra o progresso enquanto os coletores rodam e o relatório é renderizado:</p>
+      <pre><code>  AER · Azure Estate Report
+  ──────────────────────────────────────────────
+  ▶ Resolvendo contexto do Azure…
+  ✓ Autenticado como voce@contoso.com  tenant: contoso.onmicrosoft.com
+  ✓ 21 assinatura(s) no escopo
+  ▶ Coletando dados do ambiente…  21 coletores · paralelismo 4
+  ✓ Coletados todos os 21 conjuntos de dados
+  ▶ Renderizando relatório HTML…
+  ✓ Relatório gerado   C:\...\aer-report\index.html
+  ✓ Exportação Excel   C:\...\aer-report\exports\aer-report.xlsx
+  ✓ Exportação PDF     C:\...\aer-report\exports\aer-report.pdf
+  ✓ Concluído.</code></pre>
+
+      <h2 id="sample">5. Testar sem Azure</h2>
+      <p>Para validar o layout ou capturar screenshots sem conectar ao Azure, use o dataset de exemplo embutido:</p>
+      <pre><code>Invoke-AerReport -SampleData -OutputPath .\aer-sample -OpenReport</code></pre>
+
+      <h2 id="output">6. Onde fica a saída</h2>
+      <p>Por padrão, o relatório é escrito em <code>.\aer-report\</code>:</p>
+      <pre><code>aer-report/
+├── index.html                 # abra este
+├── assets/                     # style.css, app.js, data.js (dados embutidos)
+└── exports/
+    ├── aer-report.xlsx
+    └── aer-report.pdf</code></pre>
+      <div class="lead-note">
+        <strong>Atenção:</strong> o relatório contém metadados do ambiente (nomes de recursos, IDs, configuração).
+        Trate a pasta de saída como você trataria qualquer inventário de infraestrutura.
+      </div>
+
+      <h2 id="next">Próximos passos</h2>
+      <ul>
+        <li><a href="usage.pt-br.html">Uso &amp; parâmetros</a> — cada parâmetro e padrões comuns de execução.</li>
+        <li><a href="report-reference.pt-br.html">Referência do relatório</a> — um tour guiado pelos oito domínios.</li>
+        <li><a href="architecture.pt-br.html">Arquitetura &amp; segurança</a> — como o AER funciona por dentro.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <p>© <span data-current-year></span> TrimTechBR. Projetos open source para cloud, automação e DevOps.</p>
+    <div class="footer-links">
+      <a href="../solutions/index.pt-br.html">Soluções</a>
+      <a href="../docs/getting-started.pt-br.html">Docs</a>
+      <a href="https://github.com/TrimTechBR/azure-estate-report" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>
